@@ -1,0 +1,51 @@
+<nav class="navbar bg-light navbar-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('homepage') }}">
+                <img src="{{ asset('public/img/logo.png') }}" style="    height: 66px;
+                margin-top: -20px;
+                width: auto;" alt="invia">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}  <li><a href="{{ path('image_index') }}">Licensed  Images</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('savedimage_index') }}">Saved images</a></li>
+            <li class="text-right"><a href="{{ path('user_index') }}">Users</a></li>
+            
+            {% endif %}
+        </ul>
+
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <!-- =============================== If user is authentificated =============================== -->
+            {% if is_granted('ROLE_USER') %}
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('homepage') }}">{{ app.user.username }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </li>
+
+
+            {% else %}
+
+            <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+            <!-- =============================== If user is not authentificated =============================== -->
+
+
+
+        </ul>
+    </div>
+</nav>
+{% block javascripts %}
+<script>   $(".nav li").on("click", function(){
+ $(this).addClass("active");
+});
+</script>
+
+{% endblock %}

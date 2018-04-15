@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block title %}show user{% endblock %}
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+
+        <tr>
+            <th>Username</th>
+            <td>{{ user.username }}</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>Last Login </th>
+            <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
+        </tr>
+
+        <tr>
+            <th>Roles</th>
+            <td>{% for a in  user.roles %}
+                    {% if  a  in 'ROLE_USER'  %}
+                        USER
+                    {% else %}
+                        ADMIN
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+        </tbody>
+    </table>
+<span style="text-align: right">
+    <ul>
+            <a class="btn btn-primary" href="{{ path('user_index') }}"><span class="glyphicon glyphicon-backward"> </span> Back</a>
+
+
+
+            <a class="btn btn-success" href="{{ path('user_edit', { 'id': user.id }) }}"><span class="fa fa-edit"> </span> Edit</a>
+
+            {{ form_start(delete_form) }}
+
+            </br>
+            <button type="submit" class="btn btn-danger"> <span class="fa fa-remove"  ></span> Delete</button>
+
+            {{ form_end(delete_form) }}
+    </ul>
+</span>
+{% endblock %}

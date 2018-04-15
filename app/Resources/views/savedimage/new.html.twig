@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+   {% block title %}new saved images{% endblock %}
+
+{% block body %}
+    <h2>Savedimage creation</h2>
+<div class="row" style="max-width: 50%">
+    <div class="panel-body">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <a class="btn btn-primary" href="{{ path('savedimage_index') }}"><span class="glyphicon glyphicon-backward"> </span> Back</a>
+
+        <div style="float: right">
+            <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-plus-sign"  ></span> Create</button></div>
+
+        {{ form_end(form) }}
+
+
+    </div>
+</div>
+    {% block javascripts %}
+        <script src="{{ asset('public/js/bootstrap-filestyle.js') }}"></script>
+        <script src="{{ asset('public/js/index.js') }}"></script>
+
+    {% endblock %}
+{% endblock %}

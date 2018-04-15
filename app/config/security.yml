@@ -1,0 +1,49 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_USER:       ROLE_USER
+        ROLE_ADMIN: [ROLE_ADMIN,ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                #default_target_path: image_index
+                success_handler: redirect.after.login
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+            logout:
+                path: /logout
+                target: /login
+                #success_handler: redirect.after.logout
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/image$, role: ROLE_USER }
+        - { path: ^/image/id, role: ROLE_USER ,methods: [GET]}
+
+        - { path: ^/image/new, role: ROLE_ADMIN }
+        - { path: ^/image/id/edit, role: ROLE_ADMIN }
+        - { path: ^/image/id, role: ROLE_ADMIN ,methods: [DELETE]}
+
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/user, role: ROLE_ADMIN }
+

@@ -1,0 +1,104 @@
+body {
+    background: url("../img/bg.png") no-repeat center center fixed;    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.panel-default {
+    opacity: 0.9;
+    margin-top:30px;
+}
+.form-group.last { margin-bottom:0px; }
+
+#outer
+{
+    width:100%;
+    text-align: left
+;
+}
+.inner
+{
+    display: inline-block;
+}
+
+.body {
+    padding: 1em 2em;
+    font-size: 18px;
+    background: transparent;
+    color: #000000;
+}
+
+h1,h2 {
+    font-weight: 200;
+    margin: 0.4em 0;
+}
+h1{ font-size: 3.5em;
+
+}
+h2{
+    color: #a94442;
+    font-size: 2em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#myInput {
+    background-image: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+#myTable th, #myTable td {
+    text-align: left;
+    padding: 12px;
+}
+
+#myTable tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+.navbar{
+    background-color: #f3f3f3;
+}
+#myTable th{
+    color: #4c4c89;
+}

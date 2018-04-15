@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}edit image{% endblock %}
+{% block body %}
+<h2>Edit image</h2>
+
+{{ form_start(edit_form) }}
+{{ form_widget(edit_form) }}
+
+<div style="text-align: left;">    <button type="submit" class="btn btn-success"> <span class="fa fa-pencil"> </span> Edit</button></div>
+{{ form_end(edit_form) }}
+
+</div>
+
+{% endblock %}

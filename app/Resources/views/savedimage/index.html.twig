@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}saved-images{% endblock %}
+{% block body %}
+    <h2>Savedimages list</h2>
+
+
+    <table id="myTable" class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th> Creation Date</th>
+                <th>Preview</th>
+                <th>Original image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for savedImage in savedImages %}
+            <tr>
+                <td>{{ savedImage.name }}</td>
+                <td>{% if savedImage.updatedAt %}{{ savedImage.updatedAt|date('Y-m-d') }}{% endif %}</td>
+                <td><img src='{{ asset('uploads/images/saved-images/') }}{{ savedImage.filename }}'  style="width: 30px;height: 30px;"></td>
+
+
+                <td><img src='{{savedImage.originalImage.deeplink}}'  style="width: 30px;height: 30px;"></td>
+
+                <td>
+                <a href="{{ path('savedimage_show', { 'id': savedImage.id }) }}"  title="details" class="glyphicon glyphicon-search"></a>
+                &nbsp;&nbsp;
+                <a href="{{ path('savedimage_edit', { 'id': savedImage.id }) }}" title="edit" class="glyphicon glyphicon-pencil"></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a class="btn btn-default btn-lg" href="{{ path('savedimage_new') }}"><span class="glyphicon glyphicon-plus"></span> Add  </a>
+   
+    {% block javascripts %}
+        <script src="{{ asset('public/js/index.js') }}"></script>
+    {% endblock %}
+{% endblock %}

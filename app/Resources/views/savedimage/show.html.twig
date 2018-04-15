@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}show saved images{% endblock %}
+{% block body %}
+    <h2>Savedimage</h2>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Name</th>
+                <td>{{ savedImage.name }}</td>
+            </tr>
+            <tr>
+                <th>Date creation</th>
+                <td>{% if savedImage.updatedAt %}{{ savedImage.updatedAt|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Preview</th>
+                <td><img src='{{ asset('uploads/images/saved-images/') }}{{ savedImage.filename }}'  style="width: 30px;height: 30px;"></td>
+            </tr>
+        </tbody>
+    </table>
+    </table>
+    <span style="text-align: right">
+    <ul>
+
+             <a class="btn btn-primary" href="{{ path('savedimage_index') }}"><span class="glyphicon glyphicon-arrow-left"> </span> Back</a>
+
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <a class="btn btn-success" href="{{ path('savedimage_edit', { 'id': savedImage.id }) }}"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
+
+            {{ form_start(delete_form) }}
+
+            </br>
+            <button type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"  ></span> Delete</button>
+
+            {{ form_end(delete_form) }}
+        {% endif %}
+    </ul>
+</span>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}new user{% endblock %}
+{% block body %}
+
+    <h2>Create User </h2>
+<div class="row">
+    <div class="panel-body">
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <a class="btn btn-primary" href="{{ path('user_index') }}"><span class="glyphicon glyphicon-backward"> </span> Back</a>
+<div style="float: right">
+        <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-plus"  ></span> Create</button></div>
+
+
+
+
+    </div>
+</div>
+    {{ form_end(form) }}
+
+{% endblock %}

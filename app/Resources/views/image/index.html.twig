@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}List images{% endblock %}
+{% block body %}
+<h2>Licensed Images list</h2>
+<div class="form-group col-xs-6">
+
+</div>
+<table id="myTable" class="table">
+    <thead>
+        <tr>                
+            <th>Name</th>
+            <th>Days allowed</th>
+
+            <th>Creation date</th>
+            <th>Preview</th>
+
+            {% if is_granted('ROLE_ADMIN') %}
+            <th>Actions</th>
+            {% else %}
+            <th>Details</th>
+            {% endif %}
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for image in images %}
+        <tr>
+            <td>{{ image.name }}</td>
+
+            <td>{{ image.DaysAllowed }}</td>
+            <td>{% if image.dateCreation %}{{ image.dateCreation|date('Y-m-d') }}{% endif %}</td>
+
+            <td><img src='{{ image.deeplink }}'  style="width: 30px;height: 30px;"></td>
+
+            {% if is_granted('ROLE_ADMIN') %}
+
+            <td>
+                <a href="{{ path('image_show', { 'id': image.id }) }}" title="details" class="glyphicon glyphicon-search"></a>
+                &nbsp;&nbsp;
+                <a href="{{ path('image_edit', { 'id': image.id }) }}" title="edit" class="glyphicon glyphicon-pencil"></a>
+            </td>
+
+            {% else %}
+            <td>
+             <a href="{{ path('image_show', { 'id': image.id }) }}"><span class="glyphicon glyphicon-new-window"> </span></a>
+
+         </td>
+
+         {% endif %}
+     </tr>
+     {% endfor %}
+ </tbody>
+</table>
+{% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-default btn-lg" href="{{ path('image_new') }}"><span class="glyphicon glyphicon-plus"></span> Add  </a>
+{% endif %}
+
+{% endblock %}

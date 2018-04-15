@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit save image{% endblock %}
+{% block body %}
+<h2>Savedimage edit</h2>
+
+
+{{ form_start(edit_form) }}
+{{ form_widget(edit_form) }}
+
+<div class="form-group">
+    <div style="text-align: left">    <button type="submit" class="btn btn-success"> <span class="fa fa-edit"> </span> Edit</button></div>
+    {{ form_end(edit_form) }}
+
+    </div>
+</div>
+{% block javascripts %}
+<script src="{{ asset('public/js/bootstrap-filestyle.js') }}"></script>
+<script src="{{ asset('public/js/index.js') }}"></script>
+
+{% endblock %}
+{% endblock %}

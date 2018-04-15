@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %}show image{% endblock %}
+{% block body %}
+    <h1>Image Detail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Date of Creation</th>
+                <td>{% if image.dateCreation %}{{ image.dateCreation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Days allowed</th>
+                <td>{{ image.DaysAllowed }} Days</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ image.name }}</td>
+            </tr>
+            <tr>
+                <th>Preview</th>
+                <td><img src='{{ image.deeplink }}'  style="width: 30px;height: 30px;"></td>
+            </tr>
+        </tbody>
+    </table>
+<span style="text-align: right">
+    <ul>
+
+             <a class="btn btn-primary" href="{{ path('image_index') }}"><span class="glyphicon glyphicon-arrow-left"> </span> Back</a>
+
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <a class="btn btn-success" href="{{ path('image_edit', { 'id': image.id }) }}"><span class="fa fa-pencil"> </span> Edit</a>
+
+            {{ form_start(delete_form) }}
+
+            </br>
+            <button type="submit" class="btn btn-danger"> <span class="fa fa-remove"  ></span> Delete</button>
+
+            {{ form_end(delete_form) }}
+        {% endif %}
+    </ul>
+</span>
+{% endblock %}
